@@ -88,6 +88,16 @@ cursor: pointer;
 <!-- Graph will be displayed here -->
 </div>
 <p>Track your daily profit and loss in the interactive graph above.</p>
+
+<!-- Form to add new data -->
+<h3>Add New Data</h3>
+<form id="data-form">
+<label for="date">Date:</label>
+<input type="date" id="date" name="date" required>
+<label for="profit-loss">Profit/Loss:</label>
+<input type="number" id="profit-loss" name="profit-loss" required>
+<button type="submit">Add Data</button>
+</form>
 </section>
 
 <section id="contact">
@@ -137,12 +147,26 @@ beginAtZero: true
 }
 });
 
-// This function can be used to update the chart with new data
+// Function to update the chart with new data
 function updateChart(dates, data) {
 profitLossChart.data.labels = dates;
 profitLossChart.data.datasets[0].data = data;
 profitLossChart.update();
 }
+
+// Handle form submission to add new data
+document.getElementById('data-form').addEventListener('submit', function(event) {
+event.preventDefault();
+const date = document.getElementById('date').value;
+const profitLoss = document.getElementById('profit-loss').value;
+if (date && profitLoss) {
+const dates = profitLossChart.data.labels;
+const data = profitLossChart.data.datasets[0].data;
+dates.push(date);
+data.push(profitLoss);
+updateChart(dates, data);
+}
+});
 </script>
 </body>
 </html>
