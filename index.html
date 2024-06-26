@@ -84,9 +84,7 @@ cursor: pointer;
 
 <section id="profit-loss">
 <h2>Daily Profit and Loss</h2>
-<div class="graph-container" id="graph-container">
-<!-- Graph will be displayed here -->
-</div>
+<canvas id="profitLossChart" class="graph-container"></canvas>
 <p>Track your daily profit and loss in the interactive graph above.</p>
 
 <!-- Form to add new data -->
@@ -117,7 +115,7 @@ cursor: pointer;
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const ctx = document.getElementById('graph-container').getContext('2d');
+const ctx = document.getElementById('profitLossChart').getContext('2d');
 const profitLossChart = new Chart(ctx, {
 type: 'line',
 data: {
